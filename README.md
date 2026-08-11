@@ -27,10 +27,3 @@ All of them are at the top of the file. Change any hex.
 | `--sh-drift` | one pass of the sheen |
 | `--sh-row` | a shortcut's height once open |
 | `--sh-open` | how fast they unfold |
-
-## One catch
-
-The shortcuts are told apart from real channels by the type chip that
-[ChannelBadges](https://equicord.org) adds. With that plugin off, every channel looks
-like a shortcut and the whole list folds away. Keep it enabled, or delete the second
-half of the file and keep just the boost bar.
