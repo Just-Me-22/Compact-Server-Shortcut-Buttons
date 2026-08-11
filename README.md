@@ -27,3 +27,7 @@ All of them are at the top of the file. Change any hex.
 | `--sh-drift` | one pass of the sheen |
 | `--sh-row` | a shortcut's height once open |
 | `--sh-open` | how fast they unfold |
+
+## License
+
+[CC0 1.0 Universal](LICENSE). Public domain, no attribution needed.
