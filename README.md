@@ -3,7 +3,7 @@
 Discord stacks up to six shortcut buttons above your channel list. This folds them
 behind the first one. Hover it and the rest slide out.
 
-The boost goal bar gets a sheen that sweeps across it.
+The boost goal bar gets a sheen that sweeps across it cuz why not.
 
 ## Install
 
