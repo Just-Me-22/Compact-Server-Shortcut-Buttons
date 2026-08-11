@@ -1,0 +1,86 @@
+/**
+ * @name Server Header
+ * @description Folds Discord's server shortcut buttons behind the first one, and gives
+ *              the boost goal bar a sweeping sheen.
+ * @author Just-Me-22
+ * @version 1.0.0
+ */
+
+:root {
+  --sh-boost-ground: #4A108F;   /* the bar's dark end */
+  --sh-boost-light: #A04DFF;    /* its bright end */
+  --sh-boost-sheen: #C46BFF55;  /* the light that travels across it */
+  --sh-boost-ink: #F0E4FF;      /* the label and the boost count */
+  --sh-boost-edge: #23194D;     /* the rule under the bar */
+  --sh-drift: 2.6s;             /* one pass of the sheen */
+
+  --sh-row: 34px;               /* a shortcut's height once open */
+  --sh-open: 0.2s;              /* how fast they unfold */
+}
+
+/* ---- boost goal bar ---- */
+
+[class*="content_"] > [class*="sidebar_"] [class*="progress" i] {
+  background-image: linear-gradient(90deg, var(--sh-boost-ground), var(--sh-boost-light));
+  border-bottom: 2px solid var(--sh-boost-edge);
+  position: relative;
+  overflow: hidden;
+}
+
+[class*="content_"] > [class*="sidebar_"] [class*="progress" i]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40%;
+  width: 40%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--sh-boost-sheen), transparent);
+  will-change: transform;
+  animation: sh-drift var(--sh-drift) linear infinite;
+}
+
+[class*="content_"] > [class*="sidebar_"] [class*="boost" i] {
+  color: var(--sh-boost-ink);
+  position: relative;
+}
+
+@keyframes sh-drift {
+  to { transform: translate3d(350%, 0, 0); }
+}
+
+/* ---- shortcuts, folded behind the first ----
+   A shortcut is a channel row with no ChannelBadges chip in it. Turn that plugin off
+   and this folds your whole channel list instead, so keep it on or delete this half. */
+
+*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"]))
+~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])) {
+  max-height: 0;
+  overflow: hidden;
+  contain: layout paint;
+  transition: max-height var(--sh-open) cubic-bezier(.2, .85, .25, 1);
+}
+
+*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"]))
+~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])) > * {
+  opacity: 0;
+  transition: opacity var(--sh-open) ease-out;
+}
+
+*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])):hover
+~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])),
+*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"]))
+~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])):hover {
+  max-height: var(--sh-row);
+}
+
+*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])):hover
+~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])) > *,
+*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"]))
+~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])):hover > * {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="content_"] > [class*="sidebar_"] [class*="progress" i]::after { animation: none; }
+}
