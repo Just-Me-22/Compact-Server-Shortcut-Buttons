@@ -1,9 +1,9 @@
 /**
  * @name Server Header
- * @description Shrinks Discord's server shortcut buttons down to slivers, and gives
+ * @description Folds Discord's server shortcut buttons behind the first one, and gives
  *              the boost goal bar a sweeping sheen.
  * @author Just-Me-22
- * @version 1.1.0
+ * @version 1.2.0
  */
 
 :root {
@@ -15,8 +15,6 @@
   --sh-drift: 2.6s;
 
   --sh-row: 34px;
-  --sh-peek: 10px;
-  --sh-peek-fill: #801EFF66;
   --sh-open: 0.2s;
 }
 
@@ -50,10 +48,9 @@
 }
 
 [class*="sidebar_"] li ~ li [class*="containerDefault"][class*="wrapper"] {
-  max-height: var(--sh-peek);
+  max-height: 0;
   overflow: hidden;
   contain: layout paint;
-  background: linear-gradient(var(--sh-peek-fill) 0 0) no-repeat center / 100% 4px;
   transition: max-height var(--sh-open) cubic-bezier(.2, .85, .25, 1);
 }
 
@@ -62,12 +59,13 @@
   transition: opacity var(--sh-open) ease-out;
 }
 
-[class*="sidebar_"] li ~ li [class*="containerDefault"][class*="wrapper"]:hover {
+[class*="sidebar_"]:has([class*="containerDefault"][class*="wrapper"]:hover)
+li ~ li [class*="containerDefault"][class*="wrapper"] {
   max-height: var(--sh-row);
-  background: transparent;
 }
 
-[class*="sidebar_"] li ~ li [class*="containerDefault"][class*="wrapper"]:hover > * {
+[class*="sidebar_"]:has([class*="containerDefault"][class*="wrapper"]:hover)
+li ~ li [class*="containerDefault"][class*="wrapper"] > * {
   opacity: 1;
 }
 

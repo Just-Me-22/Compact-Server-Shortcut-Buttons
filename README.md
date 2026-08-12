@@ -1,7 +1,8 @@
 # Server Header
 
-Discord stacks up to six shortcut buttons above your channel list. This keeps the first
-one and shrinks the rest to slivers. Hover a sliver and that button opens.
+Discord stacks up to six shortcut buttons above your channel list. This folds them
+behind the first one. Hover it and the rest slide out, and stay out while you move
+down them.
 
 The boost goal bar gets a sheen that sweeps across it cuz why not.
 
@@ -26,9 +27,7 @@ All of them are at the top of the file. Change any hex.
 | `--sh-boost-edge` | the rule under the bar |
 | `--sh-drift` | one pass of the sheen |
 | `--sh-row` | a shortcut's height once open |
-| `--sh-peek` | how much of a closed one still shows |
-| `--sh-peek-fill` | the bar a closed one is marked with |
-| `--sh-open` | how fast they open |
+| `--sh-open` | how fast they unfold |
 
 ## License
 
