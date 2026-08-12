@@ -10,7 +10,7 @@ The boost goal bar gets a sheen that sweeps across it cuz why not.
 Paste this into **QuickCSS**. No theme needed.
 
 ```css
-@import url("https://just-me-22.github.io/server-header/server-header.css");
+@import url("https://raw.githubusercontent.com/Just-Me-22/server-header/main/server-header.css");
 ```
 
 ## Colours
