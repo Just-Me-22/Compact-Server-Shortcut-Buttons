@@ -1,9 +1,9 @@
 /**
  * @name Server Header
- * @description Folds Discord's server shortcut buttons behind the first one, and gives
+ * @description Shrinks Discord's server shortcut buttons down to slivers, and gives
  *              the boost goal bar a sweeping sheen.
  * @author Just-Me-22
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 :root {
@@ -15,6 +15,8 @@
   --sh-drift: 2.6s;
 
   --sh-row: 34px;
+  --sh-peek: 10px;
+  --sh-peek-fill: #801EFF66;
   --sh-open: 0.2s;
 }
 
@@ -47,34 +49,31 @@
   to { transform: translate3d(350%, 0, 0); }
 }
 
-*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"]))
-~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])) {
-  max-height: 0;
+[class*="sidebar_"] li ~ li [class*="containerDefault"][class*="wrapper"] {
+  max-height: var(--sh-peek);
   overflow: hidden;
   contain: layout paint;
+  background: linear-gradient(var(--sh-peek-fill) 0 0) no-repeat center / 100% 4px;
   transition: max-height var(--sh-open) cubic-bezier(.2, .85, .25, 1);
 }
 
-*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"]))
-~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])) > * {
+[class*="sidebar_"] li ~ li [class*="containerDefault"][class*="wrapper"] > * {
   opacity: 0;
   transition: opacity var(--sh-open) ease-out;
 }
 
-*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])):hover
-~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])),
-*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"]))
-~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])):hover {
+[class*="sidebar_"] li ~ li [class*="containerDefault"][class*="wrapper"]:hover {
   max-height: var(--sh-row);
+  background: transparent;
 }
 
-*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])):hover
-~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])) > *,
-*:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"]))
-~ *:has(> [class*="containerDefault"]):not(:has(.channel-badge)):not(:has([class*="typeThread"])):hover > * {
+[class*="sidebar_"] li ~ li [class*="containerDefault"][class*="wrapper"]:hover > * {
   opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
   [class*="content_"] > [class*="sidebar_"] [class*="progress" i]::after { animation: none; }
+
+  [class*="sidebar_"] li ~ li [class*="containerDefault"][class*="wrapper"],
+  [class*="sidebar_"] li ~ li [class*="containerDefault"][class*="wrapper"] > * { transition: none; }
 }
