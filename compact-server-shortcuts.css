@@ -19,7 +19,6 @@
   --sh-fade: 0.13s;
 }
 
-/* discord's own divider lands above the row, so the row draws its own underneath */
 [class*="sidebarList"] [class*="sectionDivider" i] {
   display: none;
 }
@@ -33,9 +32,6 @@
   text-align: left;
 }
 
-/* shortcut rows are the only list items discord leaves unclassed. going inline is what
-   lets them share a line and centre as a group whatever the count is. do not widen this
-   to unclassed divs: the server banner is one, and it collapses onto the boost bar */
 [class*="sidebarList"] li:not([class]) {
   display: inline;
 }
@@ -50,7 +46,6 @@
   transition: transform var(--sh-fade) ease;
 }
 
-/* every button draws the same line, so it has to be opaque or the overlaps stack up */
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]::after {
   content: "";
   position: absolute;
