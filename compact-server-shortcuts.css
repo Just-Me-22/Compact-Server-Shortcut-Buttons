@@ -3,7 +3,7 @@
  * @description Puts Discord's server shortcut buttons in one small row of icons instead of
  *              full width rows.
  * @author Just-Me-22
- * @version 3.2.3
+ * @version 4.0.0
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
@@ -11,36 +11,51 @@
   --sh-tile: 34px;
   --sh-tile-w: 40px;
   --sh-gap: 10px;
-  --sh-lift: 12px;
+  --sh-lift: 9px;
+  --sh-indent: 88px;
   --sh-icon: 24px;
   --sh-ink: #C9A6FF;
+  --sh-rule: #393A3F;
   --sh-mark: 2px;
   --sh-fade: 0.13s;
+}
+
+/* discord's own divider lands above the row, so the row draws its own underneath */
+[class*="sidebarList"] [class*="sectionDivider" i] {
+  display: none;
 }
 
 [class*="sidebarList"] [class*="containerDefault"]:not([class*="wrapper"]) {
   clear: both;
 }
 
-[class*="sidebarList"] [class*="sectionDivider" i] ~ [class*="sectionDivider" i] {
-  margin-top: var(--sh-tile);
-}
-
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] {
   float: left;
+  position: relative;
+  left: var(--sh-indent);
   width: var(--sh-tile-w);
   height: var(--sh-tile);
   margin: calc(0px - var(--sh-lift)) var(--sh-gap) 0 0;
-  background: none;
-  overflow: hidden;
   transition: transform var(--sh-fade) ease;
+}
+
+/* every button draws the same line, so it has to be opaque or the overlaps stack up */
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]::after {
+  content: "";
+  position: absolute;
+  left: -600px;
+  right: -600px;
+  bottom: -5px;
+  height: 1px;
+  background: var(--sh-rule);
+  pointer-events: none;
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] {
   width: 100%;
   height: 100%;
   padding: 0;
-  background: none;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
