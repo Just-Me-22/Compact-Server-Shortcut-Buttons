@@ -3,50 +3,40 @@
  * @description Puts Discord's server shortcut buttons in one small row of icons instead of
  *              full width rows.
  * @author Just-Me-22
- * @version 3.0.0
+ * @version 3.2.0
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
 :root {
   --sh-tile: 34px;
-  --sh-lift: 8px;
+  --sh-tile-w: 40px;
+  --sh-gap: 6px;
+  --sh-lift: 0px;
   --sh-icon: 24px;
-  --sh-tile-bg: #FFFFFF14;
-  --sh-tile-lit: #A04DFF4D;
-  --sh-tile-sel: #A04DFF2E;
-  --sh-tile-ink: #C9A6FF;
+  --sh-ink: #C9A6FF;
   --sh-mark: 2px;
   --sh-fade: 0.13s;
 }
 
-[class*="sidebarList"] li {
-  display: contents;
-}
-
-[class*="sidebarList"] ul {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-}
-
-[class*="sidebarList"] ul > *,
-[class*="sidebarList"] li > * {
-  flex: 0 0 100%;
+[class*="sidebarList"] [class*="containerDefault"]:not([class*="wrapper"]) {
+  clear: both;
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] {
-  flex: 1;
+  float: left;
+  width: var(--sh-tile-w);
   height: var(--sh-tile);
-  margin: calc(0px - var(--sh-lift)) 0 0;
-  background-color: var(--sh-tile-bg);
+  margin: calc(0px - var(--sh-lift)) var(--sh-gap) 0 0;
+  background: none;
   overflow: hidden;
-  transition: background-color var(--sh-fade) ease, transform var(--sh-fade) ease;
+  transition: transform var(--sh-fade) ease;
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] {
   width: 100%;
   height: 100%;
   padding: 0;
+  background: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,13 +54,7 @@
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] {
-  background-color: var(--sh-tile-sel);
-  box-shadow: inset 0 calc(0px - var(--sh-mark)) 0 var(--sh-tile-ink);
-}
-
-[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:hover,
-[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:focus-within {
-  background-color: var(--sh-tile-lit);
+  box-shadow: inset 0 calc(0px - var(--sh-mark)) 0 var(--sh-ink);
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:active {
@@ -80,7 +64,7 @@
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] svg,
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:hover svg,
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:focus-within svg {
-  color: var(--sh-tile-ink);
+  color: var(--sh-ink);
 }
 
 @media (prefers-reduced-motion: reduce) {

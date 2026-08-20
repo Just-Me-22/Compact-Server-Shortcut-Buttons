@@ -1,6 +1,7 @@
 Discord stacks up to six shortcut buttons above your channel list, each one a full-width
-row with a label on it. This turns them into a single bar of icon tiles across the top of
-the sidebar, so your channels start higher up. Whichever one you have open gets underlined.
+row with a label on it. This turns them into one small row of icons at the top of
+the sidebar, so your channels start higher up. Whichever one you have open turns purple and
+gets an underline.
 
 Built against stock Discord dark.
 
