@@ -1,9 +1,9 @@
 /**
  * @name Compact Server Shortcuts
- * @description Puts Discord's server shortcut buttons in one small row of icons instead of
- *              full width rows.
+ * @description Puts Discord's server shortcut buttons in one row that splits the sidebar
+ *              width between them, instead of full width rows with labels.
  * @author Just-Me-22
- * @version 4.1.1
+ * @version 4.2.0
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
@@ -13,7 +13,10 @@
   --sh-gap: 10px;
   --sh-lift: 12px;
   --sh-icon: 24px;
+  --sh-round: 6px;
   --sh-ink: #C9A6FF;
+  --sh-fill: rgba(255, 255, 255, .045);
+  --sh-fill-on: rgba(255, 255, 255, .09);
   --sh-rule: #393A3F;
   --sh-mark: 2px;
   --sh-fade: 0.13s;
@@ -24,26 +27,28 @@
 }
 
 [class*="sidebarList"] ul {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
-[class*="sidebarList"] ul > li,
-[class*="sidebarList"] ul > div {
-  text-align: left;
+[class*="sidebarList"] ul > div,
+[class*="sidebarList"] ul > li[class] {
+  flex: 0 0 100%;
 }
 
-[class*="sidebarList"] li:not([class]) {
-  display: inline;
+[class*="sidebarList"] ul > li:not([class]) {
+  flex: 1 1 var(--sh-tile-w);
+  min-width: 0;
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] {
-  display: inline-block;
-  vertical-align: top;
   position: relative;
-  width: var(--sh-tile-w);
   height: var(--sh-tile);
   margin: calc(0px - var(--sh-lift)) calc(var(--sh-gap) / 2) 0;
-  transition: transform var(--sh-fade) ease;
+  background: var(--sh-fill);
+  border-radius: var(--sh-round);
+  transition: transform var(--sh-fade) ease, background var(--sh-fade) ease;
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]::after {
@@ -76,6 +81,12 @@
   width: var(--sh-icon);
   height: var(--sh-icon);
   transition: color var(--sh-fade) ease;
+}
+
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:hover,
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:focus-within,
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] {
+  background: var(--sh-fill-on);
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] {
