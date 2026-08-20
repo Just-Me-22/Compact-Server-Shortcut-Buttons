@@ -3,7 +3,7 @@
  * @description Collapses Discord's server shortcut buttons into a single row of icon tiles,
  *              and sweeps a sheen across the boost goal bar.
  * @author Just-Me-22
- * @version 2.0.0
+ * @version 2.0.1
  * @source https://github.com/Just-Me-22/server-header
  */
 
@@ -25,28 +25,28 @@
   --sh-fade: 0.13s;
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="progress" i] {
+[class*="sidebarList"] [class*="progress" i] {
   background-image: linear-gradient(90deg, var(--sh-boost-ground), var(--sh-boost-light));
   border-bottom: 2px solid var(--sh-boost-edge);
   position: relative;
   overflow: hidden;
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="progress" i],
-[class*="content_"] > [class*="sidebar_"] [class*="progress" i] * {
+[class*="sidebarList"] [class*="progress" i],
+[class*="sidebarList"] [class*="progress" i] * {
   color: var(--sh-boost-ink);
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="progress" i] ~ [class*="progress" i] {
+[class*="sidebarList"] [class*="progress" i] ~ [class*="progress" i] {
   background-image: none;
   border-bottom: 0;
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="progress" i] ~ [class*="progress" i]::after {
+[class*="sidebarList"] [class*="progress" i] ~ [class*="progress" i]::after {
   content: none;
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="progress" i]::after {
+[class*="sidebarList"] [class*="progress" i]::after {
   content: "";
   position: absolute;
   top: 0;
@@ -57,7 +57,7 @@
   background: linear-gradient(90deg, transparent, var(--sh-boost-sheen), transparent);
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="progress" i]:hover::after {
+[class*="sidebarList"] [class*="progress" i]:hover::after {
   will-change: transform;
   animation: sh-drift var(--sh-drift) linear infinite;
 }
@@ -66,22 +66,22 @@
   to { transform: translate3d(350%, 0, 0); }
 }
 
-[class*="content_"] > [class*="sidebar_"] li {
+[class*="sidebarList"] li {
   display: contents;
 }
 
-[class*="content_"] > [class*="sidebar_"] ul {
+[class*="sidebarList"] ul {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
 }
 
-[class*="content_"] > [class*="sidebar_"] ul > *,
-[class*="content_"] > [class*="sidebar_"] li > * {
+[class*="sidebarList"] ul > *,
+[class*="sidebarList"] li > * {
   flex: 0 0 100%;
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"] {
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] {
   flex: 1;
   height: var(--sh-tile);
   margin: calc(0px - var(--sh-lift)) 0 0;
@@ -90,7 +90,7 @@
   transition: background-color var(--sh-fade) ease, transform var(--sh-fade) ease;
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] {
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] {
   width: 100%;
   height: 100%;
   padding: 0;
@@ -99,40 +99,40 @@
   justify-content: center;
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] > * {
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] > * {
   display: none;
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] > svg {
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] > svg {
   display: block;
   width: var(--sh-icon);
   height: var(--sh-icon);
   transition: color var(--sh-fade) ease;
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] {
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] {
   background-color: var(--sh-tile-sel);
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] svg {
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] svg {
   color: var(--sh-tile-ink);
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"]:hover,
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"]:focus-within {
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:hover,
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:focus-within {
   background-color: var(--sh-tile-lit);
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"]:active {
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:active {
   transform: scale(.94);
 }
 
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"]:hover svg,
-[class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"]:focus-within svg {
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:hover svg,
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:focus-within svg {
   color: var(--sh-tile-ink);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [class*="content_"] > [class*="sidebar_"] [class*="progress" i]:hover::after { animation: none; }
-  [class*="content_"] > [class*="sidebar_"] [class*="containerDefault"][class*="wrapper"]:active { transform: none; }
+  [class*="sidebarList"] [class*="progress" i]:hover::after { animation: none; }
+  [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:active { transform: none; }
 }
