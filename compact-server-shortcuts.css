@@ -3,7 +3,7 @@
  * @description Puts Discord's server shortcut buttons in one small row of icons instead of
  *              full width rows.
  * @author Just-Me-22
- * @version 4.1.0
+ * @version 4.1.1
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
@@ -33,11 +33,10 @@
   text-align: left;
 }
 
-/* shortcut rows are the only list items discord leaves unclassed, and on some servers
-   one of them sits in an unclassed div as well. going inline is what lets them share a
-   line and centre as a group whatever the count is */
-[class*="sidebarList"] li:not([class]),
-[class*="sidebarList"] ul > div:not([class]) {
+/* shortcut rows are the only list items discord leaves unclassed. going inline is what
+   lets them share a line and centre as a group whatever the count is. do not widen this
+   to unclassed divs: the server banner is one, and it collapses onto the boost bar */
+[class*="sidebarList"] li:not([class]) {
   display: inline;
 }
 
