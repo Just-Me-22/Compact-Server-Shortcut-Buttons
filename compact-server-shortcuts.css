@@ -1,20 +1,13 @@
 /**
  * @name Compact Server Shortcuts
  * @description Puts Discord's server shortcut buttons in one small row of icons instead of
- *              full width rows, and gives the boost goal bar a sheen on hover.
+ *              full width rows.
  * @author Just-Me-22
- * @version 2.1.0
+ * @version 3.0.0
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
 :root {
-  --sh-boost-ground: #4A108F;
-  --sh-boost-light: #A04DFF;
-  --sh-boost-sheen: #C46BFF55;
-  --sh-boost-ink: #F0E4FF;
-  --sh-boost-edge: #23194D;
-  --sh-drift: 2.6s;
-
   --sh-tile: 34px;
   --sh-lift: 8px;
   --sh-icon: 24px;
@@ -24,47 +17,6 @@
   --sh-tile-ink: #C9A6FF;
   --sh-mark: 2px;
   --sh-fade: 0.13s;
-}
-
-[class*="sidebarList"] [class*="progress" i] {
-  background-image: linear-gradient(90deg, var(--sh-boost-ground), var(--sh-boost-light));
-  border-bottom: 2px solid var(--sh-boost-edge);
-  position: relative;
-  overflow: hidden;
-}
-
-[class*="sidebarList"] [class*="progress" i],
-[class*="sidebarList"] [class*="progress" i] * {
-  color: var(--sh-boost-ink);
-}
-
-[class*="sidebarList"] [class*="progress" i] ~ [class*="progress" i] {
-  background-image: none;
-  border-bottom: 0;
-}
-
-[class*="sidebarList"] [class*="progress" i] ~ [class*="progress" i]::after {
-  content: none;
-}
-
-[class*="sidebarList"] [class*="progress" i]::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -40%;
-  width: 40%;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent, var(--sh-boost-sheen), transparent);
-}
-
-[class*="sidebarList"] [class*="progress" i]:hover::after {
-  will-change: transform;
-  animation: sh-drift var(--sh-drift) linear infinite;
-}
-
-@keyframes sh-drift {
-  to { transform: translate3d(350%, 0, 0); }
 }
 
 [class*="sidebarList"] li {
@@ -132,6 +84,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [class*="sidebarList"] [class*="progress" i]:hover::after { animation: none; }
   [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:active { transform: none; }
 }

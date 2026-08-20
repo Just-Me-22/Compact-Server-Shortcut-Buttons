@@ -2,9 +2,6 @@ Discord stacks up to six shortcut buttons above your channel list, each one a fu
 row with a label on it. This turns them into a single bar of icon tiles across the top of
 the sidebar, so your channels start higher up. Whichever one you have open gets underlined.
 
-The boost goal bar gets a sheen that sweeps across it cuz why not. It only runs while you
-hover the bar.
-
 Built against stock Discord dark.
 
 ## Install
