@@ -3,7 +3,7 @@
  * @description Puts Discord's server shortcut buttons in one small row of icons instead of
  *              full width rows.
  * @author Just-Me-22
- * @version 3.2.0
+ * @version 3.2.1
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
@@ -18,7 +18,8 @@
   --sh-fade: 0.13s;
 }
 
-[class*="sidebarList"] [class*="containerDefault"]:not([class*="wrapper"]) {
+[class*="sidebarList"] [class*="containerDefault"]:not([class*="wrapper"]),
+[class*="sidebarList"] [class*="sectionDivider" i] {
   clear: both;
 }
 
