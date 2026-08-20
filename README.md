@@ -17,9 +17,10 @@ Paste this into **QuickCSS**. No theme needed.
 
 [CC0 1.0 Universal](LICENSE). Public domain, no attribution needed.
 
-## The one value you may want to change
+## Values you may want to change
 
-`--sh-indent` slides the row sideways. It is a fixed offset, not real centring, because
-centring the row would need a wrapper element around just those buttons and Discord does not
-render one. 88px lines up a four button server. Fewer buttons will sit left of centre, more
-will sit right, so nudge it until it looks right on the servers you actually use.
+`--sh-gap` is the space between the icons and `--sh-tile-w` is how wide each one is.
+`--sh-lift` pulls the row up towards the divider above it, and `--sh-ink` is the purple.
+
+The row centres itself, so it stays in the middle whether a server gives you one button or
+six. You should not need to nudge it.

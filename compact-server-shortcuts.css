@@ -3,7 +3,7 @@
  * @description Puts Discord's server shortcut buttons in one small row of icons instead of
  *              full width rows.
  * @author Just-Me-22
- * @version 4.0.0
+ * @version 4.1.0
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
@@ -11,8 +11,7 @@
   --sh-tile: 34px;
   --sh-tile-w: 40px;
   --sh-gap: 10px;
-  --sh-lift: 9px;
-  --sh-indent: 88px;
+  --sh-lift: 12px;
   --sh-icon: 24px;
   --sh-ink: #C9A6FF;
   --sh-rule: #393A3F;
@@ -25,17 +24,30 @@
   display: none;
 }
 
-[class*="sidebarList"] [class*="containerDefault"]:not([class*="wrapper"]) {
-  clear: both;
+[class*="sidebarList"] ul {
+  text-align: center;
+}
+
+[class*="sidebarList"] ul > li,
+[class*="sidebarList"] ul > div {
+  text-align: left;
+}
+
+/* shortcut rows are the only list items discord leaves unclassed, and on some servers
+   one of them sits in an unclassed div as well. going inline is what lets them share a
+   line and centre as a group whatever the count is */
+[class*="sidebarList"] li:not([class]),
+[class*="sidebarList"] ul > div:not([class]) {
+  display: inline;
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] {
-  float: left;
+  display: inline-block;
+  vertical-align: top;
   position: relative;
-  left: var(--sh-indent);
   width: var(--sh-tile-w);
   height: var(--sh-tile);
-  margin: calc(0px - var(--sh-lift)) var(--sh-gap) 0 0;
+  margin: calc(0px - var(--sh-lift)) calc(var(--sh-gap) / 2) 0;
   transition: transform var(--sh-fade) ease;
 }
 
