@@ -3,14 +3,14 @@
  * @description Puts Discord's server shortcut buttons in one small row of icons instead of
  *              full width rows.
  * @author Just-Me-22
- * @version 3.2.2
+ * @version 3.2.3
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
 :root {
   --sh-tile: 34px;
   --sh-tile-w: 40px;
-  --sh-gap: 6px;
+  --sh-gap: 10px;
   --sh-lift: 12px;
   --sh-icon: 24px;
   --sh-ink: #C9A6FF;
