@@ -3,7 +3,7 @@
  * @description Puts Discord's server shortcut buttons in one row that splits the sidebar
  *              width between them, instead of full width rows with labels.
  * @author Just-Me-22
- * @version 4.3.1
+ * @version 4.4.0
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
@@ -11,14 +11,17 @@
   --sh-tile: 34px;
   --sh-tile-w: 40px;
   --sh-gap: 10px;
-  --sh-lift: 12px;
+  --sh-top: 4px;
+  --sh-top-solo: 0px;
   --sh-icon: 24px;
   --sh-round: 6px;
   --sh-ink: #C9A6FF;
   --sh-fill: rgba(255, 255, 255, .045);
   --sh-fill-on: rgba(255, 255, 255, .09);
   --sh-rule: #393A3F;
-  --sh-mark: 2px;
+  --sh-tick: 9px;
+  --sh-rise: color-mix(in srgb, var(--sh-ink) 22%, transparent);
+  --sh-rise-ease: 0.22s cubic-bezier(.2, .7, .3, 1);
   --sh-fade: 0.13s;
 }
 
@@ -26,28 +29,29 @@
   display: none;
 }
 
-[class*="sidebarList"] ul {
+nav[class*="privateChannels_"] [class*="sectionDivider" i] {
+  display: revert;
+}
+
+[class*="sidebarList"] nav:not([class*="privateChannels_"]) ul {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
 }
 
-[class*="sidebarList"] ul > div,
-[class*="sidebarList"] ul > li[class] {
+[class*="sidebarList"] nav:not([class*="privateChannels_"]) ul > * {
   flex: 0 0 100%;
   min-width: 0;
 }
 
-[class*="sidebarList"] ul > li:not([class]),
-[class*="sidebarList"] ul > div:not([class]):not([style]) {
+[class*="sidebarList"] nav:not([class*="privateChannels_"]) ul > :has([class*="containerDefault"][class*="wrapper"]) {
   flex: 1 1 var(--sh-tile-w);
-  min-width: 0;
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] {
   position: relative;
   height: var(--sh-tile);
-  margin: calc(0px - var(--sh-lift)) calc(var(--sh-gap) / 2) 0;
+  margin: var(--sh-top-solo) calc(var(--sh-gap) / 2) 0;
   background: var(--sh-fill);
   border-radius: var(--sh-round);
   transition: transform var(--sh-fade) ease, background var(--sh-fade) ease;
@@ -65,10 +69,12 @@
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] {
+  position: relative;
   width: 100%;
   height: 100%;
   padding: 0;
   overflow: hidden;
+  border-radius: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,21 +84,43 @@
   display: none;
 }
 
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] [class*="link_"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--sh-rise);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--sh-rise-ease);
+  pointer-events: none;
+}
+
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:hover:not([class*="modeSelected"]) [class*="link_"]::before,
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:focus-within:not([class*="modeSelected"]) [class*="link_"]::before {
+  transform: scaleY(1);
+}
+
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] [class*="link_"] > svg {
+  position: relative;
+  z-index: 1;
   display: block;
   width: var(--sh-icon);
   height: var(--sh-icon);
   transition: color var(--sh-fade) ease;
 }
 
-[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:hover,
-[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:focus-within,
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] {
   background: var(--sh-fill-on);
 }
 
-[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] {
-  box-shadow: inset 0 calc(0px - var(--sh-mark)) 0 var(--sh-ink);
+[class*="sidebarList"] [class*="containerDefault"][class*="wrapper"][class*="modeSelected"] [class*="link_"]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: var(--sh-tick) solid var(--sh-ink);
+  border-left: var(--sh-tick) solid transparent;
 }
 
 [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:active {
@@ -107,6 +135,21 @@
 
 @media (prefers-reduced-motion: reduce) {
   [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"]:active { transform: none; }
+  [class*="sidebarList"] [class*="containerDefault"][class*="wrapper"] [class*="link_"]::before {
+    transition: none;
+  }
+}
+
+[class*="sidebarList"] [class*="progressBarContainer"] {
+  margin: var(--sh-top-solo) calc(var(--sh-gap) / 2) var(--sh-top);
+  padding: 0 8px;
+  background: var(--sh-fill);
+  border-radius: var(--sh-round);
+  transition: background var(--sh-fade) ease;
+}
+
+[class*="sidebarList"] [class*="progressBarContainer"]:hover {
+  background: var(--sh-fill-on);
 }
 
 [class*="sidebarList"] [class*="bannerImage"] {
