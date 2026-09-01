@@ -3,7 +3,7 @@
  * @description Puts Discord's server shortcut buttons in one row that splits the sidebar
  *              width between them, instead of full width rows with labels.
  * @author Just-Me-22
- * @version 4.4.0
+ * @version 4.4.1
  * @source https://github.com/Just-Me-22/Compact-Server-Shortcut-Buttons
  */
 
@@ -40,7 +40,7 @@ nav[class*="privateChannels_"] [class*="sectionDivider" i] {
 }
 
 [class*="sidebarList"] nav:not([class*="privateChannels_"]) ul > * {
-  flex: 0 0 100%;
+  flex: 0 1 100%;
   min-width: 0;
 }
 
@@ -52,6 +52,8 @@ nav[class*="privateChannels_"] [class*="sectionDivider" i] {
   position: relative;
   height: var(--sh-tile);
   margin: var(--sh-top-solo) calc(var(--sh-gap) / 2) 0;
+  padding: 0;
+  border: 0;
   background: var(--sh-fill);
   border-radius: var(--sh-round);
   transition: transform var(--sh-fade) ease, background var(--sh-fade) ease;
