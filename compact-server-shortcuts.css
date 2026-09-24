@@ -44,7 +44,7 @@ nav[class*="privateChannels_"] [class*="sectionDivider" i] {
   min-width: 0;
 }
 
-[class*="sidebarList"] nav:not([class*="privateChannels_"]) ul > :has([class*="containerDefault"][class*="wrapper"]) {
+[class*="sidebarList"] nav:not([class*="privateChannels_"]) ul > li:not([class]) {
   flex: 1 1 var(--sh-tile-w);
 }
 
