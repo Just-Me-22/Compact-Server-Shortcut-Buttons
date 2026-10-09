@@ -11,7 +11,7 @@ fills it from the bottom up.
 Paste this into **QuickCSS**.
 
 ```css
-@import url("https://raw.githubusercontent.com/Just-Me-22/Compact-Server-Shortcut-Buttons/main/compact-server-shortcuts.css");
+@import url("https://cdn.jsdelivr.net/gh/Just-Me-22/Compact-Server-Shortcut-Buttons@main/compact-server-shortcuts.css");
 ```
 
 ## License
